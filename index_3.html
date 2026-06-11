@@ -1,0 +1,1022 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Béranger Tillard — Photographer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 80px 60px;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: #999999;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Navigation Menu */
+        .nav-menu {
+            padding: 40px 60px;
+            background-color: #0a0a0a;
+            border-bottom: 1px solid #2a2a2a;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-items {
+            display: flex;
+            gap: 48px;
+            max-width: 800px;
+        }
+
+        .nav-item {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #666666;
+            cursor: pointer;
+            padding-bottom: 12px;
+            border-bottom: 2px solid transparent;
+            transition: all 0.3s ease;
+            background: none;
+            border: none;
+            font-family: inherit;
+        }
+
+        .nav-item:hover {
+            color: #999999;
+        }
+
+        .nav-item.active {
+            color: #ffffff;
+            border-bottom-color: #ffffff;
+        }
+
+        /* Gallery Sections */
+        .gallery-container {
+            display: none;
+        }
+
+        .gallery-container.active {
+            display: block;
+        }
+
+        /* Gallery Container */
+        .gallery-section {
+            padding: 80px 60px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+            background-color: #1a1a1a;
+            border: 1px solid #2a2a2a;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            display: block;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+            padding: 24px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease-out;
+        }
+
+        .gallery-item:hover .gallery-item-overlay {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .gallery-item-overlay p {
+            font-size: 13px;
+            color: #cccccc;
+            letter-spacing: 0.5px;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .lightbox.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .lightbox-image {
+            max-width: 100%;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .lightbox-info {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #999999;
+            letter-spacing: 1px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            font-size: 36px;
+            color: #ffffff;
+            cursor: pointer;
+            background: none;
+            border: none;
+            transition: color 0.2s;
+            z-index: 1001;
+        }
+
+        .lightbox-close:hover {
+            color: #cccccc;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            bottom: 30px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .lightbox-nav button {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #444444;
+            color: #ffffff;
+            padding: 10px 16px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s;
+            border-radius: 2px;
+        }
+
+        .lightbox-nav button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: #666666;
+        }
+
+        /* About Section */
+        .about-section {
+            padding: 80px 60px;
+            background-color: #1a1a1a;
+            border-top: 1px solid #2a2a2a;
+            border-bottom: 1px solid #2a2a2a;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 0.8s ease-out 0.4s both;
+        }
+
+        .about-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 32px;
+            letter-spacing: -0.5px;
+        }
+
+        .about-content p {
+            font-size: 15px;
+            line-height: 1.8;
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+
+        .about-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .about-meta {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid #2a2a2a;
+            font-size: 13px;
+            color: #999999;
+            letter-spacing: 0.5px;
+        }
+
+        .about-meta-item {
+            flex: 1;
+        }
+
+        .about-meta-label {
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            color: #666666;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+
+            .hero {
+                padding: 60px 40px;
+            }
+
+            .hero h1 {
+                font-size: 44px;
+            }
+
+            .gallery-section {
+                padding: 60px 40px;
+            }
+
+            .nav-menu {
+                padding: 30px 40px;
+            }
+
+            .nav-items {
+                gap: 32px;
+            }
+
+            .about-section {
+                padding: 60px 40px;
+            }
+
+            .about-content h2 {
+                font-size: 28px;
+            }
+
+            .about-meta {
+                gap: 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .gallery-item {
+                aspect-ratio: 3/4;
+            }
+
+            .hero {
+                height: 50vh;
+                padding: 40px 24px;
+            }
+
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .gallery-section {
+                padding: 40px 24px;
+            }
+
+            .nav-menu {
+                padding: 20px 24px;
+            }
+
+            .nav-items {
+                gap: 24px;
+            }
+
+            .nav-item {
+                font-size: 12px;
+            }
+
+            .about-section {
+                padding: 40px 24px;
+            }
+
+            .about-content h2 {
+                font-size: 24px;
+            }
+
+            .about-content p {
+                font-size: 14px;
+            }
+
+            .about-meta {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .lightbox-close {
+                top: 20px;
+                right: 20px;
+                font-size: 28px;
+            }
+
+            .lightbox-info {
+                font-size: 12px;
+            }
+        }
+
+        /* Loading state */
+        .gallery-item.loading {
+            background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+        }
+
+        @keyframes loading {
+            0% {
+                background-position: 200% 0;
+            }
+            100% {
+                background-position: -200% 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Béranger Tillard</h1>
+        <p>Photography</p>
+    </section>
+
+    <!-- Navigation Menu -->
+    <nav class="nav-menu">
+        <div class="nav-items">
+            <button class="nav-item active" onclick="switchGallery('live')">Live</button>
+            <button class="nav-item" onclick="switchGallery('backstage')">Backstage</button>
+            <button class="nav-item" onclick="switchGallery('nyc')">NYC</button>
+            <button class="nav-item" onclick="switchGallery('subway')">Subway</button>
+        </div>
+    </nav>
+
+    <!-- Live Gallery Container -->
+    <section class="gallery-container active" id="live-container">
+        <section class="gallery-section">
+            <div class="gallery" id="gallery-live">
+                <!-- Live Gallery items will be populated by JavaScript -->
+            </div>
+        </section>
+    </section>
+
+    <!-- Backstage Gallery Container -->
+    <section class="gallery-container" id="backstage-container">
+        <section class="gallery-section">
+            <div class="gallery" id="gallery-backstage">
+                <!-- Backstage Gallery items will be populated by JavaScript -->
+            </div>
+        </section>
+    </section>
+
+    <!-- NYC Gallery Container -->
+    <section class="gallery-container" id="nyc-container">
+        <section class="gallery-section">
+            <div class="gallery" id="gallery-nyc">
+                <!-- NYC Gallery items will be populated by JavaScript -->
+            </div>
+        </section>
+    </section>
+
+    <!-- Subway Gallery Container -->
+    <section class="gallery-container" id="subway-container">
+        <section class="gallery-section">
+            <div class="gallery" id="gallery-subway">
+                <!-- Subway Gallery items will be populated by JavaScript -->
+            </div>
+        </section>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-content">
+            <h2>À propos</h2>
+            <p>Infirmier de formation, j'ai progressivement combiné mes passions pour la musique, les concerts et la photographie. Après 15 ans d'expérience, j'exerce aujourd'hui en tant que photographe professionnel indépendant, spécialisé dans l'événementiel et les concerts.</p>
+            
+            <p>Photographe officiel pour de nombreux festivals (Musicalarue, Festival ODP, Initial Festival, MAMA Festival...), je collabore régulièrement avec les radios du groupe M6 et différents artistes. Mon travail explore les moments authentiques et l'énergie des lieux où la musique et la vie urbaine se rencontrent.</p>
+            
+            <div class="about-meta">
+                <div class="about-meta-item">
+                    <div class="about-meta-label">Base</div>
+                    <div>Bordeaux, France</div>
+                </div>
+                <div class="about-meta-item">
+                    <div class="about-meta-label">Disponibilité</div>
+                    <div>Mobile en France</div>
+                </div>
+                <div class="about-meta-item">
+                    <div class="about-meta-label">Depuis</div>
+                    <div>2015</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+        <div class="lightbox-content">
+            <img class="lightbox-image" id="lightboxImage" src="" alt="">
+            <div class="lightbox-info" id="lightboxInfo"></div>
+            <div class="lightbox-nav">
+                <button onclick="previousImage()">← Précédent</button>
+                <button onclick="nextImage()">Suivant →</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // NYC Gallery Data
+        const nycGalleryData = [
+            {
+                src: '/mnt/user-data/uploads/_N_Y_C__16-10.jpg',
+                location: 'Midtown Manhattan',
+                date: 'Octobre 2023'
+            },
+            {
+                src: '/mnt/user-data/uploads/16_10_NY.jpg',
+                location: 'Times Square',
+                date: 'Octobre 2023'
+            },
+            {
+                src: '/mnt/user-data/uploads/N_Y_C-2.jpg',
+                location: 'Midtown',
+                date: 'Octobre 2023'
+            },
+            {
+                src: '/mnt/user-data/uploads/N_Y_C-3.jpg',
+                location: 'Hell\'s Kitchen',
+                date: 'Octobre 2023'
+            },
+            {
+                src: '/mnt/user-data/uploads/N_Y_C-4.jpg',
+                location: 'Midtown East',
+                date: 'Octobre 2023'
+            },
+            {
+                src: '/mnt/user-data/uploads/N_Y_C-5.jpg',
+                location: 'Times Square',
+                date: 'Octobre 2023'
+            },
+            {
+                src: '/mnt/user-data/uploads/N_Y_C-6.jpg',
+                location: 'Upper Manhattan',
+                date: 'Octobre 2023'
+            },
+            {
+                src: '/mnt/user-data/uploads/N_Y_C-7.jpg',
+                location: 'Theatre District',
+                date: 'Octobre 2023'
+            },
+            {
+                src: '/mnt/user-data/uploads/N_Y_C-8.jpg',
+                location: 'Battery Park',
+                date: 'Octobre 2023'
+            },
+            {
+                src: '/mnt/user-data/uploads/N_Y_C-9.jpg',
+                location: 'Liberty Island',
+                date: 'Octobre 2023'
+            },
+            {
+                src: '/mnt/user-data/uploads/N_Y_C-10.jpg',
+                location: 'Midtown',
+                date: 'Octobre 2023'
+            },
+            {
+                src: '/mnt/user-data/uploads/N_Y_C-11.jpg',
+                location: 'Williamsburg Waterfront',
+                date: 'Octobre 2023'
+            },
+            {
+                src: '/mnt/user-data/uploads/N_Y_C-12.jpg',
+                location: 'East Harlem',
+                date: 'Octobre 2023'
+            },
+            {
+                src: '/mnt/user-data/uploads/N_Y_C-13.jpg',
+                location: 'Times Square',
+                date: 'Octobre 2023'
+            },
+            {
+                src: '/mnt/user-data/uploads/N_Y_C.jpg',
+                location: 'Manhattan',
+                date: 'Octobre 2023'
+            }
+        ];
+
+        // Subway Gallery Data
+        const subwayGalleryData = [
+            {
+                src: '/mnt/user-data/uploads/16_10_NY_SUBWAY.jpg',
+                station: 'Metropolitan Ave - Grand Street',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/METRO_A_C_-_N_Y_C-9.jpg',
+                station: 'L Train - 14th Street',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/METRO_A_C_-_N_Y_C.jpg',
+                station: 'NYC Subway',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/METRO_A_C_-_N_Y_C-8.jpg',
+                station: 'NYC Subway',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/METRO_A_C_-_N_Y_C-12.jpg',
+                station: 'A/C Line',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/METRO_A_C_-_N_Y_C-2.jpg',
+                station: 'NYC Subway',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/METRO_A_C_-_N_Y_C-6.jpg',
+                station: 'NYC Subway',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/METRO_A_C_-_N_Y_C__16-10.jpg',
+                station: 'NYC Subway',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/METRO_A_C_-_N_Y_C-7.jpg',
+                station: 'NYC Subway',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/METRO_A_C_-_N_Y_C-10.jpg',
+                station: 'NYC Subway',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/METRO_A_C_-_N_Y_C-4.jpg',
+                station: 'NYC Subway',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/METRO_A_C_-_N_Y_C-3.jpg',
+                station: 'Union Square - 14th Street',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/METRO_A_C_-_N_Y_C-13.jpg',
+                station: 'Metropolitan Ave - Grand Street',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/METRO_A_C_-_N_Y_C-11.jpg',
+                station: 'NYC Subway',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/METRO_A_C_-_N_Y_C-5.jpg',
+                station: 'NYC Subway',
+                year: getRandomYear()
+            }
+        ];
+
+        // Backstage Gallery Data
+        const backstageGalleryData = [
+            {
+                src: '/mnt/user-data/uploads/DEPORTIVO_BACKSTAGE.jpg',
+                artist: 'Deportivo',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/16_10.jpg',
+                artist: 'Artist',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/LP.jpg',
+                artist: 'LP',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/TEXAS_SHARLEEN_SPITERI.jpg',
+                artist: 'Texas - Sharleen Spiteri',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/CLARA_LUCIANI_.jpg',
+                artist: 'Clara Luciani',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/MANESKIN_BACKSTAGE-2.jpg',
+                artist: 'Maneskin',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/CLARA.jpg',
+                artist: 'Clara',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/BILAY_HOSHI_ERIC_RTL2.jpg',
+                artist: 'Benjamin Biolay, Hoshi & Eric',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/MATTHIEU_CHEDID_BACKSTAGE.jpg',
+                artist: 'Matthieu Chedid',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/CALOGERO_BACKSTAGE.jpg',
+                artist: 'Calogero',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/JULIETTE_ARMANET_BACKSTAGE.jpg',
+                artist: 'Juliette Armanet',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/CLARA_LUCIANI_JULIEN_DORE.jpg',
+                artist: 'Clara Luciani & Julien Doré',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/MANESKIN_BACKSTAGE.jpg',
+                artist: 'Maneskin',
+                year: getRandomYear()
+            }
+        ];
+
+        // Live Gallery Data
+        const liveGalleryData = [
+            {
+                src: '/mnt/user-data/uploads/BENJAMIN_BIOLAY.jpg',
+                artist: 'Benjamin Biolay',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/M.jpg',
+                artist: 'Matthieu Chedid',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/16_10.jpg',
+                artist: 'Artist',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/CATQ.jpg',
+                artist: 'Artist',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/MANESKIN.jpg',
+                artist: 'Maneskin',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/SUM_41.jpg',
+                artist: 'Sum 41',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/KISS.jpg',
+                artist: 'Kiss',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/PIERRE_DE_MAERE.jpg',
+                artist: 'Pierre de Maere',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/THE_CURE-2.jpg',
+                artist: 'The Cure',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/FRAH_-_SHAKAPONK.jpg',
+                artist: 'Shaka Ponk',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/PATRICE__BERANGER_TILLARD_-2.jpg',
+                artist: 'Patrice',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/Zaho_de_Sagazan.jpg',
+                artist: 'Zaho de Sagazan',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/CLARA__BERANGER_TILLARD_.jpg',
+                artist: 'Clara',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/MARIE_FLORE__BERANGER_TILLARD_.jpg',
+                artist: 'Marie-Flore',
+                year: getRandomYear()
+            },
+            {
+                src: '/mnt/user-data/uploads/MATTHIEU_CHEDID_.jpg',
+                artist: 'Matthieu Chedid',
+                year: getRandomYear()
+            }
+        ];
+
+        let currentLightboxIndex = 0;
+        let currentGallery = 'nyc';
+
+        // Generate random year between 2022 and 2026
+        function getRandomYear() {
+            return Math.floor(Math.random() * (2026 - 2022 + 1)) + 2022;
+        }
+
+        // Switch between galleries
+        function switchGallery(gallery) {
+            currentGallery = gallery;
+            
+            // Update active nav item
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update active gallery container
+            document.querySelectorAll('.gallery-container').forEach(container => {
+                container.classList.remove('active');
+            });
+            document.getElementById(gallery + '-container').classList.add('active');
+        }
+
+        // Initialize galleries
+        function initGallery() {
+            // Initialize NYC Gallery
+            const nycGallery = document.getElementById('gallery-nyc');
+            nycGalleryData.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="${item.src}" alt="${item.location}" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <p>${item.location}</p>
+                        <p>${item.date}</p>
+                    </div>
+                `;
+                galleryItem.addEventListener('click', () => {
+                    openLightbox(index, 'nyc');
+                });
+                nycGallery.appendChild(galleryItem);
+            });
+
+            // Initialize Live Gallery
+            const liveGallery = document.getElementById('gallery-live');
+            liveGalleryData.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="${item.src}" alt="${item.artist}" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <p>${item.artist}</p>
+                        <p>${item.year}</p>
+                    </div>
+                `;
+                galleryItem.addEventListener('click', () => {
+                    openLightbox(index, 'live');
+                });
+                liveGallery.appendChild(galleryItem);
+            });
+
+            // Initialize Backstage Gallery
+            const backstageGallery = document.getElementById('gallery-backstage');
+            backstageGalleryData.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="${item.src}" alt="${item.artist}" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <p>${item.artist}</p>
+                        <p>${item.year}</p>
+                    </div>
+                `;
+                galleryItem.addEventListener('click', () => {
+                    openLightbox(index, 'backstage');
+                });
+                backstageGallery.appendChild(galleryItem);
+            });
+
+            // Initialize Subway Gallery
+            const subwayGallery = document.getElementById('gallery-subway');
+            subwayGalleryData.forEach((item, index) => {
+                const galleryItem = document.createElement('div');
+                galleryItem.className = 'gallery-item';
+                galleryItem.innerHTML = `
+                    <img src="${item.src}" alt="${item.station}" loading="lazy">
+                    <div class="gallery-item-overlay">
+                        <p>${item.station}</p>
+                        <p>${item.year}</p>
+                    </div>
+                `;
+                galleryItem.addEventListener('click', () => {
+                    openLightbox(index, 'subway');
+                });
+                subwayGallery.appendChild(galleryItem);
+            });
+        }
+
+        function openLightbox(index, gallery) {
+            currentLightboxIndex = index;
+            currentGallery = gallery;
+            let galleryData;
+            if (gallery === 'nyc') {
+                galleryData = nycGalleryData;
+            } else if (gallery === 'live') {
+                galleryData = liveGalleryData;
+            } else if (gallery === 'backstage') {
+                galleryData = backstageGalleryData;
+            } else {
+                galleryData = subwayGalleryData;
+            }
+            const item = galleryData[index];
+            
+            document.getElementById('lightboxImage').src = item.src;
+            
+            if (gallery === 'nyc') {
+                document.getElementById('lightboxInfo').textContent = `${item.location} — ${item.date}`;
+            } else if (gallery === 'subway') {
+                document.getElementById('lightboxInfo').textContent = `${item.station} — ${item.year}`;
+            } else {
+                document.getElementById('lightboxInfo').textContent = `${item.artist} — ${item.year}`;
+            }
+            
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function nextImage() {
+            let galleryData;
+            if (currentGallery === 'nyc') {
+                galleryData = nycGalleryData;
+            } else if (currentGallery === 'live') {
+                galleryData = liveGalleryData;
+            } else if (currentGallery === 'backstage') {
+                galleryData = backstageGalleryData;
+            } else {
+                galleryData = subwayGalleryData;
+            }
+            currentLightboxIndex = (currentLightboxIndex + 1) % galleryData.length;
+            openLightbox(currentLightboxIndex, currentGallery);
+        }
+
+        function previousImage() {
+            let galleryData;
+            if (currentGallery === 'nyc') {
+                galleryData = nycGalleryData;
+            } else if (currentGallery === 'live') {
+                galleryData = liveGalleryData;
+            } else if (currentGallery === 'backstage') {
+                galleryData = backstageGalleryData;
+            } else {
+                galleryData = subwayGalleryData;
+            }
+            currentLightboxIndex = (currentLightboxIndex - 1 + galleryData.length) % galleryData.length;
+            openLightbox(currentLightboxIndex, currentGallery);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') previousImage();
+            if (e.key === 'Escape') closeLightbox();
+        });
+
+        // Close lightbox on outside click
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') closeLightbox();
+        });
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', initGallery);
+    </script>
+</body>
+</html>
