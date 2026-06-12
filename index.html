@@ -81,8 +81,14 @@
 
         .nav-items {
             display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .nav-galleries {
+            display: flex;
             gap: 48px;
-            max-width: 800px;
         }
 
         .nav-item {
@@ -109,14 +115,24 @@
         }
 
         .nav-shop {
-            margin-left: auto !important;
+            display: flex;
+            align-items: center;
             padding-left: 48px;
-            border-left: 1px solid #2a2a2a;
-            color: #f59e0b !important;
+            border-left: 24px solid #ACACAC;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #587B7F;
+            cursor: pointer;
+            padding-bottom: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            background: none;
+            font-family: inherit;
         }
 
         .nav-shop:hover {
-            color: #fbbf24 !important;
+            color: #999999;
         }
 
         /* Gallery Sections */
@@ -460,11 +476,13 @@
     <!-- Navigation Menu -->
     <nav class="nav-menu">
         <div class="nav-items">
-            <button class="nav-item active" onclick="switchGallery('live')">Live</button>
-            <button class="nav-item" onclick="switchGallery('backstage')">Backstage</button>
-            <button class="nav-item" onclick="switchGallery('nyc')">NYC</button>
-            <button class="nav-item" onclick="switchGallery('subway')">Subway</button>
-            <a href="./shop.html" class="nav-item nav-shop" style="text-decoration: none; color: inherit; margin-left: auto;">Boutique</a>
+            <div class="nav-galleries">
+                <button class="nav-item active" onclick="switchGallery('live')">Live</button>
+                <button class="nav-item" onclick="switchGallery('backstage')">Backstage</button>
+                <button class="nav-item" onclick="switchGallery('nyc')">NYC</button>
+                <button class="nav-item" onclick="switchGallery('subway')">Subway</button>
+            </div>
+            <a href="./shop.html" class="nav-shop">Boutique</a>
         </div>
     </nav>
 
