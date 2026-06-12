@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Béranger Tillard — Photographer</title>
+    <title>Béranger Tillard - Photography</title>
     <style>
         * {
             margin: 0;
@@ -12,71 +12,50 @@
         }
 
         body {
-            background-color: #0a0a0a;
-            color: #ffffff;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
+            background: #0a0a0a;
+            color: #e0e0e0;
+            min-height: 100vh;
         }
 
-        /* Hero Section */
-        .hero {
-            height: 60vh;
+        /* HERO SECTION */
+        .hero-container {
+            background: #0a0a0a;
             display: flex;
             flex-direction: column;
+            align-items: center;
             justify-content: center;
-            align-items: flex-start;
-            padding: 80px 60px;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-            border-bottom: 1px solid #2a2a2a;
+            padding: 200px 342px;
+            gap: 13px;
+            min-height: 600px;
         }
 
-        .hero h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 56px;
-            font-weight: 700;
-            margin-bottom: 16px;
-            letter-spacing: -1px;
-            animation: fadeInDown 0.8s ease-out;
+        .hero-title {
+            font-size: 72px;
+            color: #ffffff;
+            font-weight: 400;
+            letter-spacing: -2px;
+            text-align: center;
         }
 
-        .hero p {
-            font-size: 16px;
-            color: #999999;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
+        .hero-subtitle {
+            font-size: 48px;
+            color: #999;
+            font-weight: 400;
+            text-align: center;
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Navigation Menu */
+        /* NAVIGATION */
         .nav-menu {
-            padding: 40px 60px;
-            background-color: #0a0a0a;
-            border-bottom: 1px solid #2a2a2a;
+            background: #0f0f0f;
+            padding: 20px 40px;
             position: sticky;
             top: 0;
             z-index: 100;
+            border-bottom: 1px solid #1a1a1a;
+            height: 60px;
+            display: flex;
+            align-items: center;
         }
 
         .nav-items {
@@ -89,7 +68,7 @@
 
         .nav-galleries {
             display: flex;
-            gap: 48px;
+            gap: 100px;
             align-items: center;
             height: 100%;
         }
@@ -98,972 +77,379 @@
             font-size: 14px;
             letter-spacing: 2px;
             text-transform: uppercase;
-            color: #666666;
+            color: #666;
             cursor: pointer;
-            padding-bottom: 0;
-            border-bottom: 2px solid transparent;
-            transition: all 0.3s ease;
             background: none;
             border: none;
             font-family: inherit;
+            font-weight: 600;
             display: flex;
             align-items: center;
             height: 100%;
+            transition: color 0.3s;
         }
 
         .nav-item:hover {
-            color: #999999;
+            color: #999;
         }
 
         .nav-item.active {
             color: #ffffff;
-            border-bottom-color: #ffffff;
         }
 
         .nav-shop {
             display: flex;
             align-items: center;
             position: relative;
-            padding-left: 48px;
+            padding-left: 20px;
             font-size: 14px;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: #13FCF9;
             cursor: pointer;
-            padding-bottom: 0;
-            transition: all 0.3s ease;
             text-decoration: none;
             background: none;
+            border: none;
             font-family: inherit;
+            font-weight: 600;
             height: 100%;
-        }
-
-        .nav-shop::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 24px;
-            background-color: #ACACAC;
+            border-left: 1px solid #acacac;
+            transition: color 0.3s;
         }
 
         .nav-shop:hover {
-            color: #999999;
+            color: #999;
         }
 
-        /* Gallery Sections */
+        /* GALLERY */
         .gallery-container {
+            background: #141414;
             display: none;
+            padding: 40px;
+            gap: 20px;
         }
 
         .gallery-container.active {
-            display: block;
-        }
-
-        /* Gallery Container */
-        .gallery-section {
-            padding: 80px 60px;
-        }
-
-        .gallery {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            animation: fadeIn 0.8s ease-out 0.4s both;
+            grid-auto-rows: auto;
+            row-gap: 20px;
+            column-gap: 20px;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-        .gallery-item {
-            position: relative;
+        .photo-card {
+            background: #333;
+            border-radius: 12px;
             overflow: hidden;
-            aspect-ratio: 3/4;
+            aspect-ratio: 1;
+            position: relative;
             cursor: pointer;
-            background-color: #1a1a1a;
-            border: 1px solid #2a2a2a;
+            transition: transform 0.3s;
         }
 
-        .gallery-item img {
+        .photo-card:hover {
+            transform: scale(1.02);
+        }
+
+        .photo-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             display: block;
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        .gallery-item-overlay {
+        .photo-label {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
-            padding: 24px;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.3s ease-out;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #808080;
+            font-size: 24px;
+            pointer-events: none;
         }
 
-        .gallery-item:hover .gallery-item-overlay {
-            transform: translateY(0);
-            opacity: 1;
+        /* ABOUT SECTION */
+        .about-container {
+            background: #0a0a0a;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
         }
 
-        .gallery-item-overlay p {
-            font-size: 13px;
-            color: #cccccc;
-            letter-spacing: 0.5px;
+        .about-title {
+            font-size: 28px;
+            color: #ffffff;
+            font-weight: 400;
+            letter-spacing: 1px;
         }
 
-        /* Lightbox */
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .about-text {
+            font-size: 16px;
+            color: #b3b3b3;
+            line-height: 1.6;
+            max-width: 900px;
+        }
+
+        /* LIGHTBOX */
         .lightbox {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
+            inset: 0;
+            background: rgba(0, 0, 0, 0.9);
             z-index: 1000;
-            animation: fadeIn 0.3s ease-out;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
         }
 
         .lightbox.active {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
         }
 
         .lightbox-content {
             position: relative;
-            max-width: 90vw;
-            max-height: 90vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            gap: 83px;
+            width: 100%;
+            max-width: 1200px;
         }
 
         .lightbox-image {
-            max-width: 100%;
-            max-height: 80vh;
-            object-fit: contain;
+            background: #333;
+            width: 900px;
+            height: 700px;
+            border-radius: 8px;
+            object-fit: cover;
         }
 
-        .lightbox-info {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #999999;
-            letter-spacing: 1px;
+        .lightbox-nav {
+            color: #999;
+            font-size: 48px;
+            cursor: pointer;
+            user-select: none;
+            transition: color 0.3s;
+        }
+
+        .lightbox-nav:hover {
+            color: #fff;
         }
 
         .lightbox-close {
             position: absolute;
-            top: 30px;
-            right: 40px;
-            font-size: 36px;
-            color: #ffffff;
+            top: 10px;
+            right: 10px;
+            color: #fff;
+            font-size: 48px;
             cursor: pointer;
             background: none;
             border: none;
-            transition: color 0.2s;
-            z-index: 1001;
+            padding: 10px;
+            transition: color 0.3s;
         }
 
         .lightbox-close:hover {
-            color: #cccccc;
+            color: #ccc;
         }
 
-        .lightbox-nav {
-            position: absolute;
-            bottom: 30px;
-            display: flex;
-            gap: 16px;
-        }
-
-        .lightbox-nav button {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid #444444;
-            color: #ffffff;
-            padding: 10px 16px;
-            cursor: pointer;
-            font-size: 14px;
-            transition: all 0.2s;
-            border-radius: 2px;
-        }
-
-        .lightbox-nav button:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: #666666;
-        }
-
-        /* About Section */
-        .about-section {
-            padding: 80px 60px;
-            background-color: #1a1a1a;
-            border-top: 1px solid #2a2a2a;
-            border-bottom: 1px solid #2a2a2a;
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            animation: fadeIn 0.8s ease-out 0.4s both;
-        }
-
-        .about-content h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 32px;
-            letter-spacing: -0.5px;
-        }
-
-        .about-content p {
-            font-size: 15px;
-            line-height: 1.8;
-            color: #cccccc;
-            margin-bottom: 20px;
-        }
-
-        .about-content p:last-child {
-            margin-bottom: 0;
-        }
-
-        .about-meta {
-            display: flex;
-            gap: 40px;
-            margin-top: 40px;
-            padding-top: 40px;
-            border-top: 1px solid #2a2a2a;
-            font-size: 13px;
-            color: #999999;
-            letter-spacing: 0.5px;
-        }
-
-        .about-meta-item {
-            flex: 1;
-        }
-
-        .about-meta-label {
-            text-transform: uppercase;
-            margin-bottom: 8px;
-            color: #666666;
-        }
-
-        /* Responsive */
+        /* RESPONSIVE */
         @media (max-width: 1024px) {
-            .gallery {
+            .hero-container {
+                padding: 150px 200px;
+            }
+
+            .gallery-container.active {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 16px;
             }
 
-            .hero {
-                padding: 60px 40px;
-            }
-
-            .hero h1 {
-                font-size: 44px;
-            }
-
-            .gallery-section {
-                padding: 60px 40px;
-            }
-
-            .nav-menu {
-                padding: 30px 40px;
-            }
-
-            .nav-items {
-                gap: 32px;
-            }
-
-            .about-section {
-                padding: 60px 40px;
-            }
-
-            .about-content h2 {
-                font-size: 28px;
-            }
-
-            .about-meta {
-                gap: 30px;
+            .lightbox-content {
+                gap: 40px;
             }
         }
 
         @media (max-width: 768px) {
-            .gallery {
-                grid-template-columns: 1fr;
-                gap: 12px;
+            .hero-container {
+                padding: 100px 40px;
             }
 
-            .gallery-item {
-                aspect-ratio: 3/4;
+            .hero-title {
+                font-size: 48px;
             }
 
-            .hero {
-                height: 50vh;
-                padding: 40px 24px;
+            .hero-subtitle {
+                font-size: 32px;
             }
 
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .gallery-section {
-                padding: 40px 24px;
-            }
-
-            .nav-menu {
-                padding: 20px 24px;
-            }
-
-            .nav-items {
-                gap: 24px;
+            .nav-galleries {
+                gap: 30px;
             }
 
             .nav-item {
                 font-size: 12px;
             }
 
-            .about-section {
-                padding: 40px 24px;
+            .gallery-container.active {
+                grid-template-columns: repeat(1, 1fr);
+                padding: 20px;
             }
 
-            .about-content h2 {
-                font-size: 24px;
+            .about-container {
+                padding: 20px;
             }
 
-            .about-content p {
-                font-size: 14px;
-            }
-
-            .about-meta {
+            .lightbox-content {
                 flex-direction: column;
                 gap: 20px;
             }
 
-            .lightbox-close {
-                top: 20px;
-                right: 20px;
-                font-size: 28px;
-            }
-
-            .lightbox-info {
-                font-size: 12px;
-            }
-        }
-
-        /* Loading state */
-        .gallery-item.loading {
-            background: linear-gradient(90deg, #1a1a1a 25%, #2a2a2a 50%, #1a1a1a 75%);
-            background-size: 200% 100%;
-            animation: loading 1.5s infinite;
-        }
-
-        @keyframes loading {
-            0% {
-                background-position: 200% 0;
-            }
-            100% {
-                background-position: -200% 0;
+            .lightbox-image {
+                width: 100%;
+                height: auto;
+                max-height: 400px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Hero -->
-    <section class="hero">
-        <h1>Béranger Tillard</h1>
-        <p>Photography</p>
-    </section>
+    <!-- HERO SECTION -->
+    <div class="hero-container">
+        <h1 class="hero-title">BÉRANGER TILLARD</h1>
+        <p class="hero-subtitle">Photography</p>
+    </div>
 
-    <!-- Navigation Menu -->
+    <!-- NAVIGATION -->
     <nav class="nav-menu">
         <div class="nav-items">
             <div class="nav-galleries">
-                <button class="nav-item active" onclick="switchGallery('live')">Live</button>
-                <button class="nav-item" onclick="switchGallery('backstage')">Backstage</button>
+                <button class="nav-item active" onclick="switchGallery('live')">LIVE</button>
+                <button class="nav-item" onclick="switchGallery('backstage')">BACKSTAGE</button>
                 <button class="nav-item" onclick="switchGallery('nyc')">NYC</button>
-                <button class="nav-item" onclick="switchGallery('subway')">Subway</button>
+                <button class="nav-item" onclick="switchGallery('subway')">SUBWAY</button>
             </div>
-            <a href="./shop.html" class="nav-shop">Boutique</a>
+            <a href="./shop.html" class="nav-shop">BOUTIQUE</a>
         </div>
     </nav>
 
-    <!-- Live Gallery Container -->
-    <section class="gallery-container active" id="live-container">
-        <section class="gallery-section">
-            <div class="gallery" id="gallery-live">
-                <!-- Live Gallery items will be populated by JavaScript -->
-            </div>
-        </section>
-    </section>
+    <!-- GALLERIES -->
+    <div id="live" class="gallery-container active">
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/BENJAMIN_BIOLAY.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/MATTHIEU_CHEDID_.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/16_10.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/MANESKIN.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/SUM_41.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/KISS.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/PIERRE_DE_MAERE.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/THE_CURE-2.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/FRAH_-_SHAKAPONK.jpg" alt=""><div class="photo-label">Photo</div></div>
+    </div>
 
-    <!-- Backstage Gallery Container -->
-    <section class="gallery-container" id="backstage-container">
-        <section class="gallery-section">
-            <div class="gallery" id="gallery-backstage">
-                <!-- Backstage Gallery items will be populated by JavaScript -->
-            </div>
-        </section>
-    </section>
+    <div id="backstage" class="gallery-container">
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/DEPORTIVO_BACKSTAGE.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/LP.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/TEXAS_SHARLEEN_SPITERI.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/CLARA_LUCIANI_.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/MANESKIN_BACKSTAGE-2.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/MATTHIEU_CHEDID_BACKSTAGE.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/CALOGERO_BACKSTAGE.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/JULIETTE_ARMANET_BACKSTAGE.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/CLARA_LUCIANI_JULIEN_DORE.jpg" alt=""><div class="photo-label">Photo</div></div>
+    </div>
 
-    <!-- NYC Gallery Container -->
-    <section class="gallery-container" id="nyc-container">
-        <section class="gallery-section">
-            <div class="gallery" id="gallery-nyc">
-                <!-- NYC Gallery items will be populated by JavaScript -->
-            </div>
-        </section>
-    </section>
+    <div id="nyc" class="gallery-container">
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-2.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-5.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-7.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-9.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-11.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-12.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-13.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/16_10_NY.jpg" alt=""><div class="photo-label">Photo</div></div>
+    </div>
 
-    <!-- Subway Gallery Container -->
-    <section class="gallery-container" id="subway-container">
-        <section class="gallery-section">
-            <div class="gallery" id="gallery-subway">
-                <!-- Subway Gallery items will be populated by JavaScript -->
-            </div>
-        </section>
-    </section>
+    <div id="subway" class="gallery-container">
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-2.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-3.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-5.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-6.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-7.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-9.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-10.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-11.jpg" alt=""><div class="photo-label">Photo</div></div>
+    </div>
 
-    <!-- About Section -->
-    <section class="about-section">
+    <!-- ABOUT SECTION -->
+    <section class="about-container">
+        <h2 class="about-title">À PROPOS</h2>
         <div class="about-content">
-            <h2>À propos</h2>
-            <p>Infirmier de formation, j'ai progressivement combiné mes passions pour la musique, les concerts et la photographie. Après 15 ans d'expérience, j'exerce aujourd'hui en tant que photographe professionnel indépendant, spécialisé dans l'événementiel et les concerts.</p>
-            
-            <p>Photographe officiel pour de nombreux festivals (Musicalarue, Festival ODP, Initial Festival, MAMA Festival...), je collabore régulièrement avec les radios du groupe M6 et différents artistes. Mon travail explore les moments authentiques et l'énergie des lieux où la musique et la vie urbaine se rencontrent.</p>
-            
-            <div class="about-meta">
-                <div class="about-meta-item">
-                    <div class="about-meta-label">Base</div>
-                    <div>Bordeaux, France</div>
-                </div>
-                <div class="about-meta-item">
-                    <div class="about-meta-label">Disponibilité</div>
-                    <div>Mobile en France</div>
-                </div>
-                <div class="about-meta-item">
-                    <div class="about-meta-label">Depuis</div>
-                    <div>2015</div>
-                </div>
-            </div>
+            <p class="about-text">Infirmier de formation, j'ai progressivement combiné mes passions pour la musique, les concerts et la photographie. Après 15 ans d'expérience, j'exerce aujourd'hui en tant que photographe professionnel indépendant, spécialisé dans l'événementiel et les concerts.</p>
+            <p class="about-text">Photographe officiel pour de nombreux festivals (Musicalarue, Festival ODP, Initial Festival, MAMA Festival...), je collabore régulièrement avec les radios du groupe M6 et différents artistes. Mon travail explore les moments authentiques et l'énergie des lieux où la musique et la vie urbaine se rencontrent.</p>
         </div>
     </section>
 
-    <!-- Lightbox -->
+    <!-- LIGHTBOX -->
     <div class="lightbox" id="lightbox">
         <button class="lightbox-close" onclick="closeLightbox()">✕</button>
         <div class="lightbox-content">
-            <img class="lightbox-image" id="lightboxImage" src="" alt="">
-            <div class="lightbox-info" id="lightboxInfo"></div>
-            <div class="lightbox-nav">
-                <button onclick="previousImage()">← Précédent</button>
-                <button onclick="nextImage()">Suivant →</button>
-            </div>
+            <span class="lightbox-nav" onclick="prevLightbox()">◀</span>
+            <img id="lightbox-image" class="lightbox-image" src="" alt="">
+            <span class="lightbox-nav" onclick="nextLightbox()">▶</span>
         </div>
     </div>
 
     <script>
-        // NYC Gallery Data
-        const nycGalleryData = [
-            {
-                src: './image/_N_Y_C__16-10.jpg',
-                location: 'Midtown Manhattan',
-                date: 'Octobre 2023'
-            },
-            {
-                src: './image/16_10_NY.jpg',
-                location: 'Times Square',
-                date: 'Octobre 2023'
-            },
-            {
-                src: './image/N_Y_C-2.jpg',
-                location: 'Midtown',
-                date: 'Octobre 2023'
-            },
-            {
-                src: './image/N_Y_C-3.jpg',
-                location: 'Hell\'s Kitchen',
-                date: 'Octobre 2023'
-            },
-            {
-                src: './image/N_Y_C-4.jpg',
-                location: 'Midtown East',
-                date: 'Octobre 2023'
-            },
-            {
-                src: './image/N_Y_C-5.jpg',
-                location: 'Times Square',
-                date: 'Octobre 2023'
-            },
-            {
-                src: './image/N_Y_C-6.jpg',
-                location: 'Upper Manhattan',
-                date: 'Octobre 2023'
-            },
-            {
-                src: './image/N_Y_C-7.jpg',
-                location: 'Theatre District',
-                date: 'Octobre 2023'
-            },
-            {
-                src: './image/N_Y_C-8.jpg',
-                location: 'Battery Park',
-                date: 'Octobre 2023'
-            },
-            {
-                src: './image/N_Y_C-9.jpg',
-                location: 'Liberty Island',
-                date: 'Octobre 2023'
-            },
-            {
-                src: './image/N_Y_C-10.jpg',
-                location: 'Midtown',
-                date: 'Octobre 2023'
-            },
-            {
-                src: './image/N_Y_C-11.jpg',
-                location: 'Williamsburg Waterfront',
-                date: 'Octobre 2023'
-            },
-            {
-                src: './image/N_Y_C-12.jpg',
-                location: 'East Harlem',
-                date: 'Octobre 2023'
-            },
-            {
-                src: './image/N_Y_C-13.jpg',
-                location: 'Times Square',
-                date: 'Octobre 2023'
-            },
-            {
-                src: './image/N_Y_C.jpg',
-                location: 'Manhattan',
-                date: 'Octobre 2023'
-            }
-        ];
-
-        // Subway Gallery Data
-        const subwayGalleryData = [
-            {
-                src: './image/16_10_NY_SUBWAY.jpg',
-                station: 'Metropolitan Ave - Grand Street',
-                year: getRandomYear()
-            },
-            {
-                src: './image/METRO_A_C_-_N_Y_C-9.jpg',
-                station: 'L Train - 14th Street',
-                year: getRandomYear()
-            },
-            {
-                src: './image/METRO_A_C_-_N_Y_C.jpg',
-                station: 'NYC Subway',
-                year: getRandomYear()
-            },
-            {
-                src: './image/METRO_A_C_-_N_Y_C-8.jpg',
-                station: 'NYC Subway',
-                year: getRandomYear()
-            },
-            {
-                src: './image/METRO_A_C_-_N_Y_C-12.jpg',
-                station: 'A/C Line',
-                year: getRandomYear()
-            },
-            {
-                src: './image/METRO_A_C_-_N_Y_C-2.jpg',
-                station: 'NYC Subway',
-                year: getRandomYear()
-            },
-            {
-                src: './image/METRO_A_C_-_N_Y_C-6.jpg',
-                station: 'NYC Subway',
-                year: getRandomYear()
-            },
-            {
-                src: './image/METRO_A_C_-_N_Y_C__16-10.jpg',
-                station: 'NYC Subway',
-                year: getRandomYear()
-            },
-            {
-                src: './image/METRO_A_C_-_N_Y_C-7.jpg',
-                station: 'NYC Subway',
-                year: getRandomYear()
-            },
-            {
-                src: './image/METRO_A_C_-_N_Y_C-10.jpg',
-                station: 'NYC Subway',
-                year: getRandomYear()
-            },
-            {
-                src: './image/METRO_A_C_-_N_Y_C-4.jpg',
-                station: 'NYC Subway',
-                year: getRandomYear()
-            },
-            {
-                src: './image/METRO_A_C_-_N_Y_C-3.jpg',
-                station: 'Union Square - 14th Street',
-                year: getRandomYear()
-            },
-            {
-                src: './image/METRO_A_C_-_N_Y_C-13.jpg',
-                station: 'Metropolitan Ave - Grand Street',
-                year: getRandomYear()
-            },
-            {
-                src: './image/METRO_A_C_-_N_Y_C-11.jpg',
-                station: 'NYC Subway',
-                year: getRandomYear()
-            },
-            {
-                src: './image/METRO_A_C_-_N_Y_C-5.jpg',
-                station: 'NYC Subway',
-                year: getRandomYear()
-            }
-        ];
-
-        // Backstage Gallery Data
-        const backstageGalleryData = [
-            {
-                src: './image/DEPORTIVO_BACKSTAGE.jpg',
-                artist: 'Deportivo',
-                year: getRandomYear()
-            },
-            {
-                src: './image/16_10.jpg',
-                artist: 'Artist',
-                year: getRandomYear()
-            },
-            {
-                src: './image/LP.jpg',
-                artist: 'LP',
-                year: getRandomYear()
-            },
-            {
-                src: './image/TEXAS_SHARLEEN_SPITERI.jpg',
-                artist: 'Texas - Sharleen Spiteri',
-                year: getRandomYear()
-            },
-            {
-                src: './image/CLARA_LUCIANI_.jpg',
-                artist: 'Clara Luciani',
-                year: getRandomYear()
-            },
-            {
-                src: './image/MANESKIN_BACKSTAGE-2.jpg',
-                artist: 'Maneskin',
-                year: getRandomYear()
-            },
-            {
-                src: './image/CLARA.jpg',
-                artist: 'Clara',
-                year: getRandomYear()
-            },
-            {
-                src: './image/BILAY_HOSHI_ERIC_RTL2.jpg',
-                artist: 'Benjamin Biolay, Hoshi & Eric',
-                year: getRandomYear()
-            },
-            {
-                src: './image/MATTHIEU_CHEDID_BACKSTAGE.jpg',
-                artist: 'Matthieu Chedid',
-                year: getRandomYear()
-            },
-            {
-                src: './image/CALOGERO_BACKSTAGE.jpg',
-                artist: 'Calogero',
-                year: getRandomYear()
-            },
-            {
-                src: './image/JULIETTE_ARMANET_BACKSTAGE.jpg',
-                artist: 'Juliette Armanet',
-                year: getRandomYear()
-            },
-            {
-                src: './image/CLARA_LUCIANI_JULIEN_DORE.jpg',
-                artist: 'Clara Luciani & Julien Doré',
-                year: getRandomYear()
-            },
-            {
-                src: './image/MANESKIN_BACKSTAGE.jpg',
-                artist: 'Maneskin',
-                year: getRandomYear()
-            }
-        ];
-
-        // Live Gallery Data
-        const liveGalleryData = [
-            {
-                src: './image/BENJAMIN_BIOLAY.jpg',
-                artist: 'Benjamin Biolay',
-                year: getRandomYear()
-            },
-            {
-                src: './image/M.jpg',
-                artist: 'Matthieu Chedid',
-                year: getRandomYear()
-            },
-            {
-                src: './image/16_10.jpg',
-                artist: 'Artist',
-                year: getRandomYear()
-            },
-            {
-                src: './image/CATQ.jpg',
-                artist: 'Artist',
-                year: getRandomYear()
-            },
-            {
-                src: './image/MANESKIN.jpg',
-                artist: 'Maneskin',
-                year: getRandomYear()
-            },
-            {
-                src: './image/SUM_41.jpg',
-                artist: 'Sum 41',
-                year: getRandomYear()
-            },
-            {
-                src: './image/KISS.jpg',
-                artist: 'Kiss',
-                year: getRandomYear()
-            },
-            {
-                src: './image/PIERRE_DE_MAERE.jpg',
-                artist: 'Pierre de Maere',
-                year: getRandomYear()
-            },
-            {
-                src: './image/THE_CURE-2.jpg',
-                artist: 'The Cure',
-                year: getRandomYear()
-            },
-            {
-                src: './image/FRAH_-_SHAKAPONK.jpg',
-                artist: 'Shaka Ponk',
-                year: getRandomYear()
-            },
-            {
-                src: './image/PATRICE__BERANGER_TILLARD_-2.jpg',
-                artist: 'Patrice',
-                year: getRandomYear()
-            },
-            {
-                src: './image/Zaho_de_Sagazan.jpg',
-                artist: 'Zaho de Sagazan',
-                year: getRandomYear()
-            },
-            {
-                src: './image/CLARA__BERANGER_TILLARD_.jpg',
-                artist: 'Clara',
-                year: getRandomYear()
-            },
-            {
-                src: './image/MARIE_FLORE__BERANGER_TILLARD_.jpg',
-                artist: 'Marie-Flore',
-                year: getRandomYear()
-            },
-            {
-                src: './image/MATTHIEU_CHEDID_.jpg',
-                artist: 'Matthieu Chedid',
-                year: getRandomYear()
-            }
-        ];
-
         let currentLightboxIndex = 0;
-        let currentGallery = 'nyc';
+        let currentLightboxGallery = [];
 
-        // Generate random year between 2022 and 2026
-        function getRandomYear() {
-            return Math.floor(Math.random() * (2026 - 2022 + 1)) + 2022;
-        }
-
-        // Switch between galleries
-        function switchGallery(gallery) {
-            currentGallery = gallery;
+        function switchGallery(galleryName) {
+            document.querySelectorAll('.gallery-container').forEach(g => g.classList.remove('active'));
+            document.getElementById(galleryName).classList.add('active');
             
-            // Update active nav item
-            document.querySelectorAll('.nav-item').forEach(item => {
-                item.classList.remove('active');
-            });
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             event.target.classList.add('active');
-            
-            // Update active gallery container
-            document.querySelectorAll('.gallery-container').forEach(container => {
-                container.classList.remove('active');
-            });
-            document.getElementById(gallery + '-container').classList.add('active');
         }
 
-        // Initialize galleries
-        function initGallery() {
-            // Initialize NYC Gallery
-            const nycGallery = document.getElementById('gallery-nyc');
-            nycGalleryData.forEach((item, index) => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.innerHTML = `
-                    <img src="${item.src}" alt="${item.location}" loading="lazy">
-                    <div class="gallery-item-overlay">
-                        <p>${item.location}</p>
-                        <p>${item.date}</p>
-                    </div>
-                `;
-                galleryItem.addEventListener('click', () => {
-                    openLightbox(index, 'nyc');
-                });
-                nycGallery.appendChild(galleryItem);
-            });
-
-            // Initialize Live Gallery
-            const liveGallery = document.getElementById('gallery-live');
-            liveGalleryData.forEach((item, index) => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.innerHTML = `
-                    <img src="${item.src}" alt="${item.artist}" loading="lazy">
-                    <div class="gallery-item-overlay">
-                        <p>${item.artist}</p>
-                        <p>${item.year}</p>
-                    </div>
-                `;
-                galleryItem.addEventListener('click', () => {
-                    openLightbox(index, 'live');
-                });
-                liveGallery.appendChild(galleryItem);
-            });
-
-            // Initialize Backstage Gallery
-            const backstageGallery = document.getElementById('gallery-backstage');
-            backstageGalleryData.forEach((item, index) => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.innerHTML = `
-                    <img src="${item.src}" alt="${item.artist}" loading="lazy">
-                    <div class="gallery-item-overlay">
-                        <p>${item.artist}</p>
-                        <p>${item.year}</p>
-                    </div>
-                `;
-                galleryItem.addEventListener('click', () => {
-                    openLightbox(index, 'backstage');
-                });
-                backstageGallery.appendChild(galleryItem);
-            });
-
-            // Initialize Subway Gallery
-            const subwayGallery = document.getElementById('gallery-subway');
-            subwayGalleryData.forEach((item, index) => {
-                const galleryItem = document.createElement('div');
-                galleryItem.className = 'gallery-item';
-                galleryItem.innerHTML = `
-                    <img src="${item.src}" alt="${item.station}" loading="lazy">
-                    <div class="gallery-item-overlay">
-                        <p>${item.station}</p>
-                        <p>${item.year}</p>
-                    </div>
-                `;
-                galleryItem.addEventListener('click', () => {
-                    openLightbox(index, 'subway');
-                });
-                subwayGallery.appendChild(galleryItem);
-            });
-        }
-
-        function openLightbox(index, gallery) {
-            currentLightboxIndex = index;
-            currentGallery = gallery;
-            let galleryData;
-            if (gallery === 'nyc') {
-                galleryData = nycGalleryData;
-            } else if (gallery === 'live') {
-                galleryData = liveGalleryData;
-            } else if (gallery === 'backstage') {
-                galleryData = backstageGalleryData;
-            } else {
-                galleryData = subwayGalleryData;
-            }
-            const item = galleryData[index];
+        function openLightbox(element) {
+            const gallery = element.parentElement;
+            const cards = Array.from(gallery.querySelectorAll('.photo-card'));
+            currentLightboxIndex = cards.indexOf(element);
+            currentLightboxGallery = cards.map(c => c.querySelector('img').src);
             
-            document.getElementById('lightboxImage').src = item.src;
-            
-            if (gallery === 'nyc') {
-                document.getElementById('lightboxInfo').textContent = `${item.location} — ${item.date}`;
-            } else if (gallery === 'subway') {
-                document.getElementById('lightboxInfo').textContent = `${item.station} — ${item.year}`;
-            } else {
-                document.getElementById('lightboxInfo').textContent = `${item.artist} — ${item.year}`;
-            }
-            
+            document.getElementById('lightbox-image').src = currentLightboxGallery[currentLightboxIndex];
             document.getElementById('lightbox').classList.add('active');
-            document.body.style.overflow = 'hidden';
         }
 
         function closeLightbox() {
             document.getElementById('lightbox').classList.remove('active');
-            document.body.style.overflow = '';
         }
 
-        function nextImage() {
-            let galleryData;
-            if (currentGallery === 'nyc') {
-                galleryData = nycGalleryData;
-            } else if (currentGallery === 'live') {
-                galleryData = liveGalleryData;
-            } else if (currentGallery === 'backstage') {
-                galleryData = backstageGalleryData;
-            } else {
-                galleryData = subwayGalleryData;
-            }
-            currentLightboxIndex = (currentLightboxIndex + 1) % galleryData.length;
-            openLightbox(currentLightboxIndex, currentGallery);
+        function nextLightbox() {
+            currentLightboxIndex = (currentLightboxIndex + 1) % currentLightboxGallery.length;
+            document.getElementById('lightbox-image').src = currentLightboxGallery[currentLightboxIndex];
         }
 
-        function previousImage() {
-            let galleryData;
-            if (currentGallery === 'nyc') {
-                galleryData = nycGalleryData;
-            } else if (currentGallery === 'live') {
-                galleryData = liveGalleryData;
-            } else if (currentGallery === 'backstage') {
-                galleryData = backstageGalleryData;
-            } else {
-                galleryData = subwayGalleryData;
-            }
-            currentLightboxIndex = (currentLightboxIndex - 1 + galleryData.length) % galleryData.length;
-            openLightbox(currentLightboxIndex, currentGallery);
+        function prevLightbox() {
+            currentLightboxIndex = (currentLightboxIndex - 1 + currentLightboxGallery.length) % currentLightboxGallery.length;
+            document.getElementById('lightbox-image').src = currentLightboxGallery[currentLightboxIndex];
         }
 
-        // Keyboard navigation
+        // Clavier
         document.addEventListener('keydown', (e) => {
-            if (!document.getElementById('lightbox').classList.contains('active')) return;
-            
-            if (e.key === 'ArrowRight') nextImage();
-            if (e.key === 'ArrowLeft') previousImage();
-            if (e.key === 'Escape') closeLightbox();
+            if (document.getElementById('lightbox').classList.contains('active')) {
+                if (e.key === 'ArrowRight') nextLightbox();
+                if (e.key === 'ArrowLeft') prevLightbox();
+                if (e.key === 'Escape') closeLightbox();
+            }
         });
-
-        // Close lightbox on outside click
-        document.getElementById('lightbox').addEventListener('click', (e) => {
-            if (e.target.id === 'lightbox') closeLightbox();
-        });
-
-        // Initialize on load
-        document.addEventListener('DOMContentLoaded', initGallery);
     </script>
 </body>
 </html>
