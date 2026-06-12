@@ -19,7 +19,6 @@
             min-height: 100vh;
         }
 
-        /* HERO SECTION */
         .hero-container {
             background: #0a0a0a;
             display: flex;
@@ -33,14 +32,8 @@
         }
 
         @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .hero-content {
@@ -58,7 +51,7 @@
             font-weight: 400;
             letter-spacing: 7.2px;
             text-align: center;
-            text-transform: capitalize;
+            text-transform: uppercase;
         }
 
         .hero-subtitle {
@@ -71,7 +64,6 @@
             text-transform: uppercase;
         }
 
-        /* NAVIGATION */
         .nav-menu {
             background: #0f0f0f;
             padding: 20px 40px;
@@ -130,22 +122,10 @@
             transition: width 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        .nav-item:hover {
-            color: #999;
-        }
-
-        .nav-item:hover::after {
-            width: 100%;
-        }
-
-        .nav-item.active {
-            color: #ffffff;
-        }
-
-        .nav-item.active::after {
-            width: 100%;
-            background: #ffffff;
-        }
+        .nav-item:hover { color: #999; }
+        .nav-item:hover::after { width: 100%; }
+        .nav-item.active { color: #ffffff; }
+        .nav-item.active::after { width: 100%; background: #ffffff; }
 
         .nav-shop {
             display: flex;
@@ -167,46 +147,36 @@
             transition: all 0.3s ease;
         }
 
-        .nav-shop:hover {
-            color: #0dd9e8;
-            text-shadow: 0 0 10px rgba(19, 252, 249, 0.5);
-        }
+        .nav-shop:hover { color: #0dd9e8; text-shadow: 0 0 10px rgba(19, 252, 249, 0.5); }
 
-        /* GALLERY */
         .gallery-container {
-            background: #141414;
+            background: #0a0a0a;
             display: none;
-            padding: 40px 204px;
-            gap: 20px;
+            padding: 44px 204px;
+            gap: 36px;
             opacity: 0;
             animation: fadeIn 0.5s ease forwards;
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .gallery-container.active {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             grid-auto-rows: auto;
-            row-gap: 20px;
-            column-gap: 20px;
+            row-gap: 36px;
+            column-gap: 36px;
             opacity: 1;
         }
 
         .photo-card {
             background: #333;
-            border-radius: 12px;
+            border-radius: 8px;
             overflow: hidden;
-            aspect-ratio: 1;
+            height: 276px;
             position: relative;
             cursor: pointer;
             transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
@@ -226,21 +196,15 @@
             transition: opacity 0.3s ease;
         }
 
-        .photo-card:hover img {
-            opacity: 0.9;
-        }
+        .photo-card:hover img { opacity: 0.9; }
 
-        .photo-label {
-            display: none;
-        }
-
-        /* ABOUT SECTION */
         .about-container {
             background: #0a0a0a;
-            padding: 40px 204px;
+            padding: 44px 204px 124px 204px;
             display: flex;
             flex-direction: column;
             gap: 26px;
+            border-top: 1px solid #b3b3b3;
             animation: fadeIn 0.8s ease 0.2s both;
         }
 
@@ -267,11 +231,8 @@
             transition: color 0.3s ease;
         }
 
-        .about-text:hover {
-            color: #ccc;
-        }
+        .about-text:hover { color: #ccc; }
 
-        /* LIGHTBOX */
         .lightbox {
             display: none;
             position: fixed;
@@ -303,14 +264,8 @@
         }
 
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .lightbox-image {
@@ -354,77 +309,33 @@
             transform: rotate(90deg);
         }
 
-        /* RESPONSIVE */
         @media (max-width: 1024px) {
-            .hero-container {
-                padding: 100px 100px;
-            }
-
-            .nav-menu,
-            .gallery-container,
-            .about-container {
+            .hero-container { padding: 100px 100px; }
+            .nav-menu, .gallery-container, .about-container {
                 padding-left: 100px;
                 padding-right: 100px;
             }
-
-            .gallery-container.active {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .lightbox-content {
-                gap: 40px;
-            }
+            .gallery-container.active { grid-template-columns: repeat(2, 1fr); }
+            .lightbox-content { gap: 40px; }
         }
 
         @media (max-width: 768px) {
-            .hero-container {
-                padding: 80px 40px;
-            }
-
-            .hero-title {
-                font-size: 48px;
-                letter-spacing: 4.8px;
-            }
-
-            .hero-subtitle {
-                font-size: 32px;
-                letter-spacing: 20px;
-            }
-
-            .nav-menu,
-            .gallery-container,
-            .about-container {
+            .hero-container { padding: 80px 40px; }
+            .hero-title { font-size: 48px; letter-spacing: 4.8px; }
+            .hero-subtitle { font-size: 32px; letter-spacing: 20px; }
+            .nav-menu, .gallery-container, .about-container {
                 padding-left: 40px;
                 padding-right: 40px;
             }
-
-            .nav-galleries {
-                gap: 30px;
-            }
-
-            .nav-item {
-                font-size: 12px;
-            }
-
-            .gallery-container.active {
-                grid-template-columns: repeat(1, 1fr);
-            }
-
-            .lightbox-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .lightbox-image {
-                width: 100%;
-                height: auto;
-                max-height: 400px;
-            }
+            .nav-galleries { gap: 30px; }
+            .nav-item { font-size: 12px; }
+            .gallery-container.active { grid-template-columns: repeat(1, 1fr); }
+            .lightbox-content { flex-direction: column; gap: 20px; }
+            .lightbox-image { width: 100%; height: auto; max-height: 400px; }
         }
     </style>
 </head>
 <body>
-    <!-- HERO SECTION -->
     <div class="hero-container">
         <div class="hero-content">
             <h1 class="hero-title">Béranger Tillard</h1>
@@ -432,7 +343,6 @@
         </div>
     </div>
 
-    <!-- NAVIGATION -->
     <nav class="nav-menu">
         <div class="nav-items">
             <div class="nav-galleries">
@@ -445,56 +355,54 @@
         </div>
     </nav>
 
-    <!-- GALLERIES -->
     <div id="live" class="gallery-container active">
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/BENJAMIN_BIOLAY.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/MATTHIEU_CHEDID_.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/16_10.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/MANESKIN.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/SUM_41.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/KISS.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/PIERRE_DE_MAERE.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/THE_CURE-2.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/FRAH_-_SHAKAPONK.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/BENJAMIN_BIOLAY.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/MATTHIEU_CHEDID_.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/16_10.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/MANESKIN.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/SUM_41.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/KISS.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/PIERRE_DE_MAERE.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/THE_CURE-2.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/FRAH_-_SHAKAPONK.jpg" alt=""></div>
     </div>
 
     <div id="backstage" class="gallery-container">
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/DEPORTIVO_BACKSTAGE.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/LP.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/TEXAS_SHARLEEN_SPITERI.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/CLARA_LUCIANI_.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/MANESKIN_BACKSTAGE-2.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/MATTHIEU_CHEDID_BACKSTAGE.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/CALOGERO_BACKSTAGE.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/JULIETTE_ARMANET_BACKSTAGE.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/CLARA_LUCIANI_JULIEN_DORE.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/DEPORTIVO_BACKSTAGE.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/LP.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/TEXAS_SHARLEEN_SPITERI.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/CLARA_LUCIANI_.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/MANESKIN_BACKSTAGE-2.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/MATTHIEU_CHEDID_BACKSTAGE.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/CALOGERO_BACKSTAGE.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/JULIETTE_ARMANET_BACKSTAGE.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/CLARA_LUCIANI_JULIEN_DORE.jpg" alt=""></div>
     </div>
 
     <div id="nyc" class="gallery-container">
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-2.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-5.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-7.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-9.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-11.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-12.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-13.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/16_10_NY.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-2.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-5.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-7.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-9.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-11.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-12.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/N_Y_C-13.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/16_10_NY.jpg" alt=""></div>
     </div>
 
     <div id="subway" class="gallery-container">
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-2.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-3.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-5.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-6.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-7.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-9.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-10.jpg" alt=""><div class="photo-label">Photo</div></div>
-        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-11.jpg" alt=""><div class="photo-label">Photo</div></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-2.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-3.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-5.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-6.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-7.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-9.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-10.jpg" alt=""></div>
+        <div class="photo-card" onclick="openLightbox(this)"><img src="./image/METRO_A_C_-_N_Y_C-11.jpg" alt=""></div>
     </div>
 
-    <!-- ABOUT SECTION -->
     <section class="about-container">
         <h2 class="about-title">À PROPOS</h2>
         <div class="about-content">
@@ -503,7 +411,6 @@
         </div>
     </section>
 
-    <!-- LIGHTBOX -->
     <div class="lightbox" id="lightbox">
         <button class="lightbox-close" onclick="closeLightbox()">✕</button>
         <div class="lightbox-content">
@@ -520,7 +427,6 @@
         function switchGallery(galleryName) {
             document.querySelectorAll('.gallery-container').forEach(g => g.classList.remove('active'));
             document.getElementById(galleryName).classList.add('active');
-            
             document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
             event.target.classList.add('active');
         }
@@ -530,7 +436,6 @@
             const cards = Array.from(gallery.querySelectorAll('.photo-card'));
             currentLightboxIndex = cards.indexOf(element);
             currentLightboxGallery = cards.map(c => c.querySelector('img').src);
-            
             document.getElementById('lightbox-image').src = currentLightboxGallery[currentLightboxIndex];
             document.getElementById('lightbox').classList.add('active');
         }
@@ -549,7 +454,6 @@
             document.getElementById('lightbox-image').src = currentLightboxGallery[currentLightboxIndex];
         }
 
-        // Clavier
         document.addEventListener('keydown', (e) => {
             if (document.getElementById('lightbox').classList.contains('active')) {
                 if (e.key === 'ArrowRight') nextLightbox();

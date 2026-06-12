@@ -18,32 +18,24 @@
             min-height: 100vh;
         }
 
-        /* HEADER */
         .header {
             background: #0a0a0a;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 28px 40px;
+            padding: 28px 204px;
             border-bottom: 1px solid #1a1a1a;
             animation: slideDown 0.5s ease;
         }
 
         @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .header-left {
             font-size: 18px;
             color: #ffffff;
-            font-weight: 400;
             text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -61,11 +53,11 @@
             font-size: 18px;
             color: #ffffff;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
 
         .header-right:hover {
             color: #13fcf9;
-            cursor: pointer;
         }
 
         .cart-icon {
@@ -81,9 +73,9 @@
             transform: scale(1.15) rotate(10deg);
         }
 
-        /* SEARCH BAR */
         .search-container {
-            padding: 20px 40px;
+            background: #0a0a0a;
+            padding: 20px 204px;
             animation: slideDown 0.5s ease 0.1s both;
         }
 
@@ -93,16 +85,12 @@
             border-radius: 8px;
             padding: 13px 14px;
             width: 100%;
-            max-width: 100%;
             color: #666;
             font-size: 13px;
             font-family: inherit;
             outline: none;
             transition: all 0.3s ease;
-        }
-
-        .search-bar::placeholder {
-            color: #666;
+            height: 45px;
         }
 
         .search-bar:focus {
@@ -111,11 +99,11 @@
             box-shadow: 0 0 15px rgba(19, 252, 249, 0.2);
         }
 
-        /* FILTERS */
         .filters-container {
+            background: #0a0a0a;
             display: flex;
             gap: 20px;
-            padding: 7px 40px;
+            padding: 7px 204px;
             flex-wrap: wrap;
             animation: slideDown 0.5s ease 0.2s both;
         }
@@ -123,7 +111,7 @@
         .filter-btn {
             background: #1a1a1a;
             border: 1px solid #333;
-            border-radius: 6px;
+            border-radius: 8px;
             padding: 0 20px;
             height: 36px;
             color: #999;
@@ -151,26 +139,18 @@
             box-shadow: 0 8px 16px rgba(19, 252, 249, 0.3);
         }
 
-        /* GALLERY GRID */
         .gallery {
-            background: #141414;
+            background: #0a0a0a;
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            padding: 40px;
-            min-height: calc(100vh - 250px);
+            gap: 10px;
+            padding: 44px 204px;
             animation: fadeIn 0.6s ease 0.3s both;
         }
 
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .photo-card {
@@ -202,7 +182,6 @@
             filter: brightness(1.1);
         }
 
-        /* MODAL */
         .modal {
             display: none;
             position: fixed;
@@ -225,7 +204,7 @@
         }
 
         .modal-content {
-            background: #1a1a1a;
+            background: #0a0a0a;
             border: 1px solid #262626;
             border-radius: 16px;
             padding: 40px;
@@ -238,14 +217,8 @@
         }
 
         @keyframes modalSlide {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            from { opacity: 0; transform: translateY(30px) scale(0.95); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
         .modal-header {
@@ -352,14 +325,8 @@
         }
 
         @keyframes priceUpdate {
-            from {
-                transform: scale(0.9);
-                opacity: 0.5;
-            }
-            to {
-                transform: scale(1);
-                opacity: 1;
-            }
+            from { transform: scale(0.9); opacity: 0.5; }
+            to { transform: scale(1); opacity: 1; }
         }
 
         .add-to-cart-btn {
@@ -386,7 +353,6 @@
             transform: translateY(-1px);
         }
 
-        /* CART SIDEBAR */
         .cart-sidebar {
             display: none;
             position: fixed;
@@ -394,7 +360,7 @@
             top: 0;
             bottom: 0;
             width: 384px;
-            background: #1a1a1a;
+            background: #0a0a0a;
             border-left: 1px solid #262626;
             z-index: 999;
             flex-direction: column;
@@ -404,14 +370,8 @@
         }
 
         @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(100%);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(100%); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .cart-sidebar.active {
@@ -535,59 +495,20 @@
             box-shadow: 0 8px 20px rgba(19, 252, 249, 0.4);
         }
 
-        /* RESPONSIVE */
         @media (max-width: 1024px) {
-            .gallery {
-                grid-template-columns: repeat(3, 1fr);
-                gap: 20px;
-                padding: 20px;
-            }
-
-            .cart-sidebar {
-                width: 320px;
-            }
+            .gallery { grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 20px 100px; }
+            .header, .search-container, .filters-container { padding-left: 100px; padding-right: 100px; }
+            .cart-sidebar { width: 320px; }
         }
 
         @media (max-width: 768px) {
-            .gallery {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .filters-container {
-                overflow-x: auto;
-                padding: 7px 20px;
-            }
-
-            .search-container,
-            .header {
-                padding: 20px;
-            }
-
-            .cart-sidebar {
-                width: 100%;
-                border-radius: 0;
-            }
-
-            .modal-content {
-                width: 95%;
-                padding: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .gallery {
-                grid-template-columns: 1fr;
-            }
-
-            .header {
-                flex-direction: column;
-                gap: 15px;
-            }
+            .gallery { grid-template-columns: repeat(2, 1fr); }
+            .header, .search-container, .filters-container { padding-left: 40px; padding-right: 40px; }
+            .cart-sidebar { width: 100%; border-radius: 0; }
         }
     </style>
 </head>
 <body>
-    <!-- HEADER -->
     <header class="header">
         <a href="./index.html" class="header-left">← PORTFOLIO</a>
         <div class="header-right" onclick="toggleCart()">
@@ -596,12 +517,10 @@
         </div>
     </header>
 
-    <!-- SEARCH -->
     <div class="search-container">
         <input type="text" class="search-bar" placeholder="🔍 Rechercher une photo...">
     </div>
 
-    <!-- FILTERS -->
     <div class="filters-container">
         <button class="filter-btn active" onclick="filterPhotos('all')">LIVE</button>
         <button class="filter-btn" onclick="filterPhotos('portrait')">PORTRAIT</button>
@@ -611,21 +530,15 @@
         <button class="filter-btn" onclick="filterPhotos('festivals')">FESTIVALS</button>
     </div>
 
-    <!-- GALLERY -->
-    <div class="gallery" id="gallery">
-        <!-- Les photos seront générées par JavaScript -->
-    </div>
+    <div class="gallery" id="gallery"></div>
 
-    <!-- PRODUCT MODAL -->
     <div class="modal" id="productModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h2 class="modal-title" id="modalTitle">Photo Name</h2>
                 <button class="modal-close" onclick="closeModal()">✕</button>
             </div>
-
             <div class="modal-image" id="modalImage"></div>
-
             <div class="modal-options">
                 <div class="option-group">
                     <div class="option-label">TAILLE</div>
@@ -635,7 +548,6 @@
                         <option value="130">Pièce Maîtresse (60×90cm) - 130€</option>
                     </select>
                 </div>
-
                 <div class="option-group">
                     <div class="option-label">SUPPORT</div>
                     <select class="option-select" id="supportSelect" onchange="updatePrice()">
@@ -646,7 +558,6 @@
                         <option value="10">Toile (+10€)</option>
                     </select>
                 </div>
-
                 <div class="option-group">
                     <div class="option-label">NUMÉROTATION</div>
                     <select class="option-select" id="editionSelect" onchange="updatePrice()">
@@ -655,7 +566,6 @@
                     </select>
                 </div>
             </div>
-
             <div class="modal-footer">
                 <div class="price" id="modalPrice">80€</div>
                 <button class="add-to-cart-btn" onclick="addToCart()">Ajouter au panier</button>
@@ -663,17 +573,14 @@
         </div>
     </div>
 
-    <!-- CART SIDEBAR -->
     <div class="cart-sidebar" id="cartSidebar">
         <div class="cart-header">
             <h3 class="cart-title">Panier</h3>
             <button class="cart-close" onclick="toggleCart()">✕</button>
         </div>
-
         <div class="cart-items" id="cartItems">
             <p style="color: #666; text-align: center; padding: 20px;">Panier vide</p>
         </div>
-
         <div class="cart-footer">
             <div class="cart-total">
                 <span>Total:</span>
@@ -684,42 +591,36 @@
     </div>
 
     <script>
-        // Sample photos data
         const photos = [
-            {id: 1, name: 'Benjamin Biolay', image: './image/BENJAMIN_BIOLAY.jpg', category: 'all'},
-            {id: 2, name: 'Matthieu Chedid', image: './image/MATTHIEU_CHEDID_.jpg', category: 'all'},
-            {id: 3, name: 'Concert', image: './image/16_10.jpg', category: 'all'},
-            {id: 4, name: 'Maneskin', image: './image/MANESKIN.jpg', category: 'all'},
-            {id: 5, name: 'Sum 41', image: './image/SUM_41.jpg', category: 'all'},
-            {id: 6, name: 'Kiss', image: './image/KISS.jpg', category: 'all'},
-            {id: 7, name: 'Pierre de Maere', image: './image/PIERRE_DE_MAERE.jpg', category: 'all'},
-            {id: 8, name: 'The Cure', image: './image/THE_CURE-2.jpg', category: 'all'},
-            {id: 9, name: 'Shaka Ponk', image: './image/FRAH_-_SHAKAPONK.jpg', category: 'all'},
-            {id: 10, name: 'Patrice', image: './image/PATRICE__BERANGER_TILLARD_-2.jpg', category: 'all'},
-            {id: 11, name: 'Zaho de Sagazan', image: './image/Zaho_de_Sagazan.jpg', category: 'all'},
-            {id: 12, name: 'Clara', image: './image/CLARA__BERANGER_TILLARD_.jpg', category: 'all'},
-            {id: 13, name: 'Marie Flore', image: './image/MARIE_FLORE__BERANGER_TILLARD_.jpg', category: 'all'},
-            {id: 14, name: 'Deportivo Backstage', image: './image/DEPORTIVO_BACKSTAGE.jpg', category: 'all'},
-            {id: 15, name: 'LP', image: './image/LP.jpg', category: 'all'},
-            {id: 16, name: 'Texas', image: './image/TEXAS_SHARLEEN_SPITERI.jpg', category: 'all'},
+            {id: 1, name: 'Benjamin Biolay', image: './image/BENJAMIN_BIOLAY.jpg'},
+            {id: 2, name: 'Matthieu Chedid', image: './image/MATTHIEU_CHEDID_.jpg'},
+            {id: 3, name: 'Concert', image: './image/16_10.jpg'},
+            {id: 4, name: 'Maneskin', image: './image/MANESKIN.jpg'},
+            {id: 5, name: 'Sum 41', image: './image/SUM_41.jpg'},
+            {id: 6, name: 'Kiss', image: './image/KISS.jpg'},
+            {id: 7, name: 'Pierre de Maere', image: './image/PIERRE_DE_MAERE.jpg'},
+            {id: 8, name: 'The Cure', image: './image/THE_CURE-2.jpg'},
+            {id: 9, name: 'Shaka Ponk', image: './image/FRAH_-_SHAKAPONK.jpg'},
+            {id: 10, name: 'Patrice', image: './image/PATRICE__BERANGER_TILLARD_-2.jpg'},
+            {id: 11, name: 'Zaho de Sagazan', image: './image/Zaho_de_Sagazan.jpg'},
+            {id: 12, name: 'Clara', image: './image/CLARA__BERANGER_TILLARD_.jpg'},
+            {id: 13, name: 'Marie Flore', image: './image/MARIE_FLORE__BERANGER_TILLARD_.jpg'},
+            {id: 14, name: 'Deportivo Backstage', image: './image/DEPORTIVO_BACKSTAGE.jpg'},
+            {id: 15, name: 'LP', image: './image/LP.jpg'},
+            {id: 16, name: 'Texas', image: './image/TEXAS_SHARLEEN_SPITERI.jpg'},
         ];
 
         let cart = [];
         let currentPhoto = null;
 
-        function renderGallery(filter = 'all') {
+        function renderGallery() {
             const gallery = document.getElementById('gallery');
             gallery.innerHTML = '';
-
-            const filteredPhotos = filter === 'all' ? photos : photos.filter(p => p.category === filter);
-
-            filteredPhotos.forEach(photo => {
+            photos.forEach(photo => {
                 const card = document.createElement('div');
                 card.className = 'photo-card';
                 card.onclick = () => openModal(photo);
-                card.innerHTML = `
-                    <img src="${photo.image}" alt="${photo.name}">
-                `;
+                card.innerHTML = `<img src="${photo.image}" alt="${photo.name}">`;
                 gallery.appendChild(card);
             });
         }
@@ -727,7 +628,7 @@
         function openModal(photo) {
             currentPhoto = photo;
             document.getElementById('modalTitle').textContent = photo.name;
-            document.getElementById('modalImage').innerHTML = `<img src="${photo.image}" style="width:100%; height:100%; object-fit:cover;">`;
+            document.getElementById('modalImage').innerHTML = `<img src="${photo.image}">`;
             document.getElementById('sizeSelect').value = '80';
             document.getElementById('supportSelect').value = '0';
             document.getElementById('editionSelect').value = '0';
@@ -748,61 +649,27 @@
         }
 
         function addToCart() {
-            const size = document.getElementById('sizeSelect').value;
-            const sizeLabel = document.getElementById('sizeSelect').options[document.getElementById('sizeSelect').selectedIndex].text;
-            const support = document.getElementById('supportSelect').value;
-            const supportLabel = document.getElementById('supportSelect').options[document.getElementById('supportSelect').selectedIndex].text;
-            const edition = document.getElementById('editionSelect').value;
-            const editionLabel = document.getElementById('editionSelect').options[document.getElementById('editionSelect').selectedIndex].text;
             const price = parseInt(document.getElementById('modalPrice').textContent);
-
-            const item = {
-                id: Date.now(),
-                name: currentPhoto.name,
-                image: currentPhoto.image,
-                size: sizeLabel,
-                support: supportLabel,
-                edition: editionLabel,
-                price: price
-            };
-
-            cart.push(item);
+            cart.push({id: Date.now(), name: currentPhoto.name, image: currentPhoto.image, price});
             updateCart();
             closeModal();
         }
 
         function updateCart() {
-            const cartCount = document.getElementById('cart-count');
-            cartCount.textContent = `(${cart.length})`;
-
+            document.getElementById('cart-count').textContent = `(${cart.length})`;
             const cartItems = document.getElementById('cartItems');
-            const cartTotal = document.getElementById('cartTotal');
-
-            if (cart.length === 0) {
-                cartItems.innerHTML = '<p style="color: #666; text-align: center; padding: 20px;">Panier vide</p>';
-                cartTotal.textContent = '0€';
-                return;
-            }
-
             let html = '';
             let total = 0;
-
-            cart.forEach((item, idx) => {
-                html += `
-                    <div class="cart-item">
-                        <div class="cart-item-img" style="background-image: url('${item.image}'); background-size: cover;"></div>
-                        <div class="cart-item-info">
-                            <div class="cart-item-name">${item.name}</div>
-                            <div class="cart-item-price">${item.price}€</div>
-                        </div>
-                        <button class="cart-item-remove" onclick="removeFromCart(${idx})">✕</button>
-                    </div>
-                `;
-                total += item.price;
-            });
-
+            if (cart.length === 0) {
+                html = '<p style="color: #666; text-align: center; padding: 20px;">Panier vide</p>';
+            } else {
+                cart.forEach((item, idx) => {
+                    html += `<div class="cart-item"><div class="cart-item-img" style="background-image: url('${item.image}'); background-size: cover;"></div><div class="cart-item-info"><div class="cart-item-name">${item.name}</div><div class="cart-item-price">${item.price}€</div></div><button class="cart-item-remove" onclick="removeFromCart(${idx})">✕</button></div>`;
+                    total += item.price;
+                });
+            }
             cartItems.innerHTML = html;
-            cartTotal.textContent = total + '€';
+            document.getElementById('cartTotal').textContent = total + '€';
         }
 
         function removeFromCart(idx) {
@@ -815,12 +682,10 @@
         }
 
         function filterPhotos(category) {
-            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
             event.target.classList.add('active');
-            renderGallery(category === 'all' ? 'all' : category);
         }
 
-        // Initialize
         renderGallery();
     </script>
 </body>
