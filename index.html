@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Béranger Tillard - Photography</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -25,24 +26,37 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 200px 342px;
-            gap: 13px;
+            padding: 144px 204px;
+            gap: 16px;
             min-height: 600px;
         }
 
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            align-items: center;
+            justify-content: center;
+        }
+
         .hero-title {
+            font-family: 'Raleway', sans-serif;
             font-size: 72px;
             color: #ffffff;
             font-weight: 400;
-            letter-spacing: -2px;
+            letter-spacing: 7.2px;
             text-align: center;
+            text-transform: capitalize;
         }
 
         .hero-subtitle {
+            font-family: 'Raleway', sans-serif;
             font-size: 48px;
             color: #999;
             font-weight: 400;
+            letter-spacing: 43.68px;
             text-align: center;
+            text-transform: uppercase;
         }
 
         /* NAVIGATION */
@@ -56,6 +70,8 @@
             height: 60px;
             display: flex;
             align-items: center;
+            padding-left: 204px;
+            padding-right: 204px;
         }
 
         .nav-items {
@@ -81,7 +97,7 @@
             cursor: pointer;
             background: none;
             border: none;
-            font-family: inherit;
+            font-family: 'Inter', inherit;
             font-weight: 600;
             display: flex;
             align-items: center;
@@ -110,7 +126,7 @@
             text-decoration: none;
             background: none;
             border: none;
-            font-family: inherit;
+            font-family: 'Inter', inherit;
             font-weight: 600;
             height: 100%;
             border-left: 1px solid #acacac;
@@ -125,7 +141,7 @@
         .gallery-container {
             background: #141414;
             display: none;
-            padding: 40px;
+            padding: 40px 204px;
             gap: 20px;
         }
 
@@ -171,17 +187,18 @@
         /* ABOUT SECTION */
         .about-container {
             background: #0a0a0a;
-            padding: 40px;
+            padding: 40px 204px;
             display: flex;
             flex-direction: column;
             gap: 26px;
         }
 
         .about-title {
+            font-family: 'Inter', sans-serif;
             font-size: 28px;
             color: #ffffff;
             font-weight: 400;
-            letter-spacing: 1px;
+            letter-spacing: 0;
         }
 
         .about-content {
@@ -191,10 +208,11 @@
         }
 
         .about-text {
+            font-family: 'Raleway', sans-serif;
             font-size: 16px;
             color: #b3b3b3;
             line-height: 1.6;
-            max-width: 900px;
+            font-weight: 500;
         }
 
         /* LIGHTBOX */
@@ -263,7 +281,14 @@
         /* RESPONSIVE */
         @media (max-width: 1024px) {
             .hero-container {
-                padding: 150px 200px;
+                padding: 100px 100px;
+            }
+
+            .nav-menu,
+            .gallery-container,
+            .about-container {
+                padding-left: 100px;
+                padding-right: 100px;
             }
 
             .gallery-container.active {
@@ -277,15 +302,24 @@
 
         @media (max-width: 768px) {
             .hero-container {
-                padding: 100px 40px;
+                padding: 80px 40px;
             }
 
             .hero-title {
                 font-size: 48px;
+                letter-spacing: 4.8px;
             }
 
             .hero-subtitle {
                 font-size: 32px;
+                letter-spacing: 20px;
+            }
+
+            .nav-menu,
+            .gallery-container,
+            .about-container {
+                padding-left: 40px;
+                padding-right: 40px;
             }
 
             .nav-galleries {
@@ -298,11 +332,6 @@
 
             .gallery-container.active {
                 grid-template-columns: repeat(1, 1fr);
-                padding: 20px;
-            }
-
-            .about-container {
-                padding: 20px;
             }
 
             .lightbox-content {
@@ -321,8 +350,10 @@
 <body>
     <!-- HERO SECTION -->
     <div class="hero-container">
-        <h1 class="hero-title">BÉRANGER TILLARD</h1>
-        <p class="hero-subtitle">Photography</p>
+        <div class="hero-content">
+            <h1 class="hero-title">Béranger Tillard</h1>
+            <p class="hero-subtitle">Photography</p>
+        </div>
     </div>
 
     <!-- NAVIGATION -->
