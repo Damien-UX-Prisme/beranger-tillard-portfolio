@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boutique - Béranger Tillard Photography</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 40;
+            background: #0a0a0a;
+            border-bottom: 1px solid #333;
+            padding: 1.5rem 2rem;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .logo-box {
+            width: 2.5rem;
+            height: 2.5rem;
+            background: linear-gradient(135deg, #f59e0b, #dc2626);
+            border-radius: 0.5rem;
+        }
+
+        .cart-btn {
+            position: relative;
+            background: none;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            padding: 0.5rem;
+            font-size: 1.25rem;
+            transition: all 0.3s;
+        }
+
+        .cart-btn:hover {
+            background: #222;
+            border-radius: 0.5rem;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -0.5rem;
+            right: -0.5rem;
+            background: #f59e0b;
+            color: #0a0a0a;
+            width: 1.5rem;
+            height: 1.5rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* MAIN CONTAINER */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        /* SEARCH & FILTERS */
+        .search-bar {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            color: #fff;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #f59e0b;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 0.75rem;
+            color: #666;
+            pointer-events: none;
+        }
+
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            color: #999;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover {
+            border-color: #f59e0b;
+            color: #e0e0e0;
+        }
+
+        .filter-btn.active {
+            background: #f59e0b;
+            color: #0a0a0a;
+            border-color: #f59e0b;
+        }
+
+        /* GALLERY */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .photo-card {
+            cursor: pointer;
+        }
+
+        .photo-image-container {
+            position: relative;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            aspect-ratio: 1;
+            background: #1a1a1a;
+            margin-bottom: 0.75rem;
+            group: "photo-image";
+        }
+
+        .photo-image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .photo-image-container:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .photo-image-container:hover .photo-button {
+            opacity: 1;
+        }
+
+        .photo-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .photo-categories {
+            position: absolute;
+            top: 0.5rem;
+            left: 0.5rem;
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .category-badge {
+            font-size: 0.75rem;
+            font-weight: bold;
+            padding: 0.25rem 0.5rem;
+            background: rgba(0, 0, 0, 0.8);
+            color: #f59e0b;
+            border-radius: 0.25rem;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .photo-button {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .photo-button button {
+            background: #f59e0b;
+            color: #0a0a0a;
+            padding: 0.5rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .photo-button button:hover {
+            background: #f5a623;
+        }
+
+        .photo-name {
+            font-size: 0.875rem;
+            color: #999;
+        }
+
+        .empty-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 50;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1a1a1a;
+            border-radius: 1rem;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .modal-header h2 {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #fff;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .option-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .option-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 0.75rem;
+        }
+
+        .option-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option-item:hover {
+            border-color: #f59e0b;
+            background: rgba(245, 158, 11, 0.1);
+        }
+
+        .option-item input {
+            margin-right: 0.75rem;
+            cursor: pointer;
+        }
+
+        .option-info {
+            flex: 1;
+        }
+
+        .option-info .name {
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .option-info .desc {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        .option-price {
+            color: #f59e0b;
+            font-weight: bold;
+        }
+
+        .modal-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            border-top: 1px solid #333;
+        }
+
+        .total-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f59e0b;
+        }
+
+        .add-to-cart-btn {
+            background: #f59e0b;
+            color: #0a0a0a;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .add-to-cart-btn:hover {
+            background: #f5a623;
+        }
+
+        /* CART SIDEBAR */
+        .cart-sidebar {
+            position: fixed;
+            right: 0;
+            top: 0;
+            width: 384px;
+            height: 100vh;
+            background: #1a1a1a;
+            z-index: 40;
+            box-shadow: -4px 0 12px rgba(0, 0, 0, 0.5);
+            display: flex;
+            flex-direction: column;
+            transform: translateX(100%);
+            transition: transform 0.3s;
+        }
+
+        .cart-sidebar.active {
+            transform: translateX(0);
+        }
+
+        .cart-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 35;
+            display: none;
+        }
+
+        .cart-overlay.active {
+            display: block;
+        }
+
+        .cart-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            border-bottom: 1px solid #333;
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+        }
+
+        .cart-item {
+            border: 1px solid #333;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .cart-item-header {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 0.5rem;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s;
+            margin-left: auto;
+        }
+
+        .cart-item-remove:hover {
+            color: #fff;
+        }
+
+        .cart-item-name {
+            color: #fff;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+
+        .cart-item-specs {
+            color: #666;
+            font-size: 0.75rem;
+            margin: 0.25rem 0;
+        }
+
+        .cart-item-price {
+            color: #f59e0b;
+            font-weight: bold;
+        }
+
+        .cart-empty {
+            text-align: center;
+            color: #666;
+            padding: 3rem 1rem;
+        }
+
+        .cart-footer {
+            border-top: 1px solid #333;
+            padding: 1.5rem;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+            font-weight: bold;
+        }
+
+        .cart-total-amount {
+            color: #f59e0b;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #f59e0b;
+            color: #0a0a0a;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: #f5a623;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .cart-sidebar {
+                width: 100%;
+            }
+
+            .filters {
+                gap: 0.5rem;
+            }
+
+            .filter-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-box"></div>
+                <span>BOUTIQUE</span>
+            </div>
+            <button class="cart-btn" onclick="toggleCart()">
+                🛒
+                <span class="cart-badge" id="cart-count" style="display: none;">0</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <!-- SEARCH -->
+        <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input 
+                type="text" 
+                class="search-input" 
+                id="search-input"
+                placeholder="Rechercher une photo..."
+                onkeyup="filterGallery()"
+            >
+        </div>
+
+        <!-- FILTERS -->
+        <div class="filters" id="filters-container"></div>
+
+        <!-- GALLERY -->
+        <div class="gallery" id="gallery"></div>
+    </div>
+
+    <!-- MODAL PRODUIT -->
+    <div class="modal" id="product-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modal-title"></h2>
+                <button class="close-btn" onclick="closeModal()">✕</button>
+            </div>
+            <div class="modal-body">
+                <img id="modal-image" class="modal-image" src="" alt="">
+                
+                <!-- TAILLE -->
+                <div class="option-group">
+                    <label class="option-label">Taille</label>
+                    <div id="sizes-container"></div>
+                </div>
+
+                <!-- SUPPORT -->
+                <div class="option-group">
+                    <label class="option-label">Support</label>
+                    <div id="supports-container"></div>
+                </div>
+
+                <!-- NUMÉROTATION -->
+                <div class="option-group">
+                    <label class="option-item">
+                        <input type="checkbox" id="numbered-option" onchange="updatePrice()">
+                        <div class="option-info">
+                            <div class="name">Édition limitée (numérotée)</div>
+                        </div>
+                        <div class="option-price">+9.99€</div>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="total-price" id="total-price">80€</div>
+                <button class="add-to-cart-btn" onclick="addToCart()">Ajouter au panier</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CART SIDEBAR -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Panier</h2>
+            <button class="close-btn" onclick="toggleCart()">✕</button>
+        </div>
+        <div class="cart-items" id="cart-items-container">
+            <div class="cart-empty">Panier vide</div>
+        </div>
+        <div class="cart-footer" id="cart-footer" style="display: none;">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span class="cart-total-amount" id="cart-total">0€</span>
+            </div>
+            <button class="checkout-btn">Passer la commande</button>
+        </div>
+    </div>
+
+    <script>
+        // DATA
+        const photos = [
+            { id: 1, name: 'Clara Luciani', categories: ['Live', 'Portrait'], image: './images/CLARA_LUCIANI_.jpg' },
+            { id: 2, name: 'NYC Subway', categories: ['Subway', 'NYC'], image: './images/METRO_A_C_-_N_Y_C.jpg' },
+            { id: 3, name: 'Benjamin Biolay', categories: ['Live', 'Portrait'], image: './images/BENJAMIN_BIOLAY.jpg' },
+            { id: 4, name: 'Matthieu Chedid', categories: ['Live', 'Rock'], image: './images/MATTHIEU_CHEDID_.jpg' },
+            { id: 5, name: 'NYC Manhattan', categories: ['NYC'], image: './images/N_Y_C-2.jpg' },
+            { id: 6, name: 'Maneskin', categories: ['Live', 'Rock'], image: './images/MANESKIN.jpg' },
+            { id: 7, name: 'NYC Subway Line', categories: ['Subway'], image: './images/METRO_A_C_-_N_Y_C-2.jpg' },
+            { id: 8, name: 'NYC Street', categories: ['NYC'], image: './images/N_Y_C-3.jpg' },
+            { id: 9, name: 'Juliette Armanet', categories: ['Live', 'Portrait'], image: './images/JULIETTE_ARMANET_BACKSTAGE.jpg' },
+            { id: 10, name: 'Sum 41', categories: ['Live', 'Rock', 'Festivals'], image: './images/SUM_41.jpg' },
+            { id: 11, name: 'NYC Underground', categories: ['Subway'], image: './images/METRO_A_C_-_N_Y_C-3.jpg' },
+            { id: 12, name: 'Calogero', categories: ['Live', 'Rock'], image: './images/CALOGERO_BACKSTAGE.jpg' },
+            { id: 13, name: 'NYC Times Square', categories: ['NYC'], image: './images/N_Y_C-5.jpg' },
+            { id: 14, name: 'Kiss', categories: ['Live', 'Rock'], image: './images/KISS.jpg' },
+            { id: 15, name: 'NYC Commute', categories: ['Subway'], image: './images/METRO_A_C_-_N_Y_C-4.jpg' },
+            { id: 16, name: 'Clara Luciani & Julien Doré', categories: ['Live', 'Portrait'], image: './images/CLARA_LUCIANI_JULIEN_DORE.jpg' },
+            { id: 17, name: 'The Cure', categories: ['Live', 'Rock', 'Festivals'], image: './images/THE_CURE-2.jpg' },
+            { id: 18, name: 'NYC Evening', categories: ['NYC'], image: './images/N_Y_C-7.jpg' },
+            { id: 19, name: 'Zaho de Sagazan', categories: ['Live', 'Portrait'], image: './images/Zaho_de_Sagazan.jpg' },
+            { id: 20, name: 'NYC Platform', categories: ['Subway', 'Electro'], image: './images/METRO_A_C_-_N_Y_C-5.jpg' },
+        ];
+
+        const categories = ['Live', 'Portrait', 'NYC', 'Rock', 'Electro', 'Festivals'];
+
+        const sizes = [
+            { id: 'bureau', name: 'Bureau (20×30cm)', price: 0 },
+            { id: 'standard', name: 'Standard (40×60cm)', price: 25 },
+            { id: 'maitresse', name: 'Pièce Maîtresse (60×90cm)', price: 50 },
+        ];
+
+        const supports = [
+            { id: 'mat', name: 'Fine Art Mat', price: 0, desc: 'Texture lisse, noir profond' },
+            { id: 'baryte', name: 'Fine Art Baryté', price: 5, desc: 'Contraste exceptionnel' },
+            { id: 'aludibond', name: 'Alu-Dibond', price: 15, desc: 'Design épuré moderne' },
+            { id: 'plexiglas', name: 'Plexiglas', price: 25, desc: 'Profondeur 3D éclatante' },
+            { id: 'toile', name: 'Toile', price: 10, desc: 'Ambiance chaleureuse' },
+        ];
+
+        // STATE
+        let selectedPhoto = null;
+        let selectedSize = 'bureau';
+        let selectedSupport = 'mat';
+        let isNumbered = false;
+        let cartItems = [];
+        let activeFilters = [];
+
+        // INIT
+        function init() {
+            renderFilters();
+            renderGallery();
+            renderSizes();
+            renderSupports();
+        }
+
+        function renderFilters() {
+            const container = document.getElementById('filters-container');
+            container.innerHTML = categories.map(cat => `
+                <button class="filter-btn" onclick="toggleFilter('${cat}')" data-filter="${cat}">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        function renderGallery() {
+            const filtered = photos.filter(photo => {
+                const matchesSearch = photo.name.toLowerCase().includes(
+                    document.getElementById('search-input').value.toLowerCase()
+                );
+                const matchesFilter = activeFilters.length === 0 || 
+                    activeFilters.some(f => photo.categories.includes(f));
+                return matchesSearch && matchesFilter;
+            });
+
+            const container = document.getElementById('gallery');
+            container.innerHTML = filtered.length === 0 ? 
+                '<div class="empty-message">Aucune photo trouvée</div>' :
+                filtered.map(photo => `
+                    <div class="photo-card" onclick="openModal(${photo.id})">
+                        <div class="photo-image-container">
+                            <img src="${photo.image}" alt="${photo.name}" class="photo-image">
+                            <div class="photo-categories">
+                                ${photo.categories.slice(0, 2).map(cat => 
+                                    `<span class="category-badge">${cat}</span>`
+                                ).join('')}
+                            </div>
+                            <div class="photo-overlay"></div>
+                            <div class="photo-button">
+                                <button>Voir détails</button>
+                            </div>
+                        </div>
+                        <div class="photo-name">${photo.name}</div>
+                    </div>
+                `).join('');
+        }
+
+        function renderSizes() {
+            const container = document.getElementById('sizes-container');
+            container.innerHTML = sizes.map(size => `
+                <label class="option-item">
+                    <input type="radio" name="size" value="${size.id}" 
+                        ${size.id === selectedSize ? 'checked' : ''}
+                        onchange="selectedSize = '${size.id}'; updatePrice()">
+                    <div class="option-info">
+                        <div class="name">${size.name}</div>
+                    </div>
+                    ${size.price > 0 ? `<div class="option-price">+${size.price}€</div>` : ''}
+                </label>
+            `).join('');
+        }
+
+        function renderSupports() {
+            const container = document.getElementById('supports-container');
+            container.innerHTML = supports.map(support => `
+                <label class="option-item">
+                    <input type="radio" name="support" value="${support.id}" 
+                        ${support.id === selectedSupport ? 'checked' : ''}
+                        onchange="selectedSupport = '${support.id}'; updatePrice()">
+                    <div class="option-info">
+                        <div class="name">${support.name}</div>
+                        <div class="desc">${support.desc}</div>
+                    </div>
+                    ${support.price > 0 ? `<div class="option-price">+${support.price}€</div>` : ''}
+                </label>
+            `).join('');
+        }
+
+        function toggleFilter(cat) {
+            activeFilters = activeFilters.includes(cat) ?
+                activeFilters.filter(f => f !== cat) :
+                [...activeFilters, cat];
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.toggle('active', activeFilters.includes(btn.dataset.filter));
+            });
+            
+            renderGallery();
+        }
+
+        function filterGallery() {
+            renderGallery();
+        }
+
+        function openModal(photoId) {
+            selectedPhoto = photos.find(p => p.id === photoId);
+            if (!selectedPhoto) return;
+
+            document.getElementById('modal-title').textContent = selectedPhoto.name;
+            document.getElementById('modal-image').src = selectedPhoto.image;
+            document.getElementById('product-modal').classList.add('active');
+
+            selectedSize = 'bureau';
+            selectedSupport = 'mat';
+            isNumbered = false;
+            document.getElementById('numbered-option').checked = false;
+
+            renderSizes();
+            renderSupports();
+            updatePrice();
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').classList.remove('active');
+        }
+
+        function updatePrice() {
+            const basePrice = 80;
+            const sizePrice = sizes.find(s => s.id === selectedSize)?.price || 0;
+            const supportPrice = supports.find(s => s.id === selectedSupport)?.price || 0;
+            const numberedPrice = document.getElementById('numbered-option').checked ? 9.99 : 0;
+            
+            const total = basePrice + sizePrice + supportPrice + numberedPrice;
+            document.getElementById('total-price').textContent = total.toFixed(2) + '€';
+        }
+
+        function addToCart() {
+            if (!selectedPhoto) return;
+
+            const item = {
+                id: `${selectedPhoto.id}-${Date.now()}`,
+                photo: selectedPhoto,
+                size: selectedSize,
+                support: selectedSupport,
+                isNumbered: document.getElementById('numbered-option').checked,
+                price: parseFloat(document.getElementById('total-price').textContent),
+            };
+
+            cartItems.push(item);
+            closeModal();
+            updateCart();
+        }
+
+        function removeFromCart(itemId) {
+            cartItems = cartItems.filter(item => item.id !== itemId);
+            updateCart();
+        }
+
+        function updateCart() {
+            const container = document.getElementById('cart-items-container');
+            const footer = document.getElementById('cart-footer');
+            const badge = document.getElementById('cart-count');
+
+            if (cartItems.length === 0) {
+                container.innerHTML = '<div class="cart-empty">Panier vide</div>';
+                footer.style.display = 'none';
+                badge.style.display = 'none';
+            } else {
+                container.innerHTML = cartItems.map(item => {
+                    const sizeInfo = sizes.find(s => s.id === item.size)?.name || '';
+                    const supportInfo = supports.find(s => s.id === item.support)?.name || '';
+                    return `
+                        <div class="cart-item">
+                            <div class="cart-item-header">
+                                <img src="${item.photo.image}" alt="" class="cart-item-image">
+                                <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">✕</button>
+                            </div>
+                            <div class="cart-item-name">${item.photo.name}</div>
+                            <div class="cart-item-specs">${sizeInfo} • ${supportInfo}${item.isNumbered ? ' • Numérotée' : ''}</div>
+                            <div class="cart-item-price">${item.price.toFixed(2)}€</div>
+                        </div>
+                    `;
+                }).join('');
+
+                const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+                document.getElementById('cart-total').textContent = total.toFixed(2) + '€';
+                footer.style.display = 'block';
+                badge.textContent = cartItems.length;
+                badge.style.display = 'flex';
+            }
+        }
+
+        function toggleCart() {
+            document.getElementById('cart-sidebar').classList.toggle('active');
+            document.getElementById('cart-overlay').classList.toggle('active');
+        }
+
+        // CLOSE MODAL ON OVERLAY CLICK
+        document.getElementById('product-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // INIT
+        init();
+    </script>
+</body>
+</html>
